@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--定位package-->
+<mapper namespace="com.wzw.dao.VehicleBindDao">
+    <!-- 获取所有用户 -->
+    <select id="getVehicleBindList" resultType="com.wzw.pojo.VehicleBind">
+        select * from mybatis.t_vehicle_bind
+    </select>
+
+    <!-- 根据id查询用户 -->
+    <select id="getVehicleBindByUID" parameterType="int" resultType="com.wzw.pojo.VehicleBind">
+        select * from mybatis.t_vehicle_bind where uid = #{uid}
+    </select>
+
+    <select id="getVehicleBindByVID" parameterType="int" resultType="com.wzw.pojo.VehicleBind">
+        select * from mybatis.t_vehicle_bind where vid = #{vid}
+    </select>
+
+    <!-- 注册用户 -->
+    <insert id="addVehicleBind" parameterType="com.wzw.pojo.VehicleBind">
+        insert into mybatis.t_vehicle_bind (`vid`,`uid`)
+        values (#{vid},#{uid})
+    </insert>
+
+    <!-- 更改用户信息根据 uid -->
+    <update id="updateVehicleBind" parameterType="com.wzw.pojo.VehicleBind">
+        update mybatis.t_vehicle_bind set `vid`=#{vid},`uid`=#{uid}
+        where uid = #{uid}
+    </update>
+
+
+    <!-- 删除用户-->
+    <delete id="deleteVehicleBind" parameterType="int">
+        delete
+        from mybatis.t_vehicle_bind
+        where vid = #{vid};
+    </delete>
+
+
+</mapper>

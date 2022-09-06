@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--定位package-->
+<mapper namespace="com.wzw.dao.UserDao">
+    <!-- 获取所有用户 -->
+    <select id="getUserList" resultType="com.wzw.pojo.User">
+        select * from mybatis.t_user
+    </select>
+
+    <!-- 根据id查询用户 -->
+    <select id="getUserByID" parameterType="int" resultType="com.wzw.pojo.User">
+        select * from mybatis.t_user where uid = #{uid}
+    </select>
+
+    <!-- 注册用户 -->
+    <insert id="addUser" parameterType="com.wzw.pojo.User">
+        insert into mybatis.t_user (uid,type,identifier,id_type,user_name,driver_license_id,state,FICO,reg_type,
+                                    insuranceID,contract_valid_date,contract_type,contract_status,account,password,travel_distance,reg_area,isBanned)
+        values (#{uid},#{type},#{identifier},#{id_type},#{user_name},#{driver_license_id},#{state},#{FICO},#{reg_type}
+                ,#{insuranceID},#{contract_valid_date},#{contract_type},#{contract_status},#{account},#{password},#{travel_distance},#{reg_area},#{isBanned})
+    </insert>
+
+    <!-- 更改用户信息 -->
+    <update id="updateUser" parameterType="com.wzw.pojo.User">
+        update mybatis.t_user set type=#{type},identifier=#{identifier},id_type=#{id_type},user_name=#{user_name},driver_license_id=#{driver_license_id},
+                                  state=#{state},FICO=#{FICO},reg_type=#{reg_type},insuranceID=#{insuranceID},contract_valid_date=#{contract_valid_date},
+                                  contract_type=#{contract_type},contract_status=#{contract_status},account=#{account},password=#{password},
+                                  travel_distance=#{travel_distance},reg_area=#{reg_area},isBanned=#{isBanned}
+                              where uid = #{uid}
+    </update>
+
+    <!-- 删除用户-->
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from mybatis.t_user
+        where uid = #{uid};
+    </delete>
+</mapper>

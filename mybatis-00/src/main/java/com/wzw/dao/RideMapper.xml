@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--定位package-->
+<mapper namespace="com.wzw.dao.RideDao">
+    <!-- 获取所有用户 -->
+    <select id="getRideList" resultType="com.wzw.pojo.Ride">
+        select * from mybatis.t_ride
+    </select>
+
+    <!-- 根据id查询用户 -->
+    <select id="getRideByID" parameterType="int" resultType="com.wzw.pojo.Ride">
+        select * from mybatis.t_ride where rid = #{rid}
+    </select>
+
+    <!-- 注册用户 -->
+    <insert id="addRide" parameterType="com.wzw.pojo.Ride">
+        insert into mybatis.t_ride (rid,time,passenger_id,driver_id,MQTT_chanel,ride_type,start_coordinate,start_address,end_coordinate,
+                                    end_address,ride_status,ride_accept_time,pick_up_time,arrive_time,ride_cancel_time,ride_distance,
+                                    ride_order_id,ride_alarm_status,warranty_status,ride_stars,ride_comment,formed_order_id,total_price,
+                                    start_price,ride_gas_price,time_price,special_location_price,dynamic_price,order_status,payment_platform,
+                                    payment_id,payment_result,ride_trace_id,time_form,GPS_trace,speed_trace,altitude_trace)
+        values (#{rid},#{time},#{passenger_id},#{driver_id},#{MQTT_chanel},#{ride_type},#{start_coordinate},#{start_address},#{end_coordinate},
+                #{end_address},#{ride_status},#{ride_accept_time},#{pick_up_time},#{arrive_time},#{ride_cancel_time},
+                #{ride_distance},#{ride_order_id},#{ride_alarm_status},#{warranty_status},#{ride_stars},#{ride_comment},
+                #{formed_order_id},#{total_price},#{start_price},#{ride_gas_price},#{time_price},#{special_location_price},
+                #{dynamic_price},#{order_status},#{payment_platform},#{payment_id},#{payment_result},#{ride_trace_id},
+                #{time_form},#{GPS_trace},#{speed_trace},#{altitude_trace})
+    </insert>
+
+    <!-- 更改用户信息 -->
+    <update id="updateRide" parameterType="com.wzw.pojo.Ride">
+        update mybatis.t_ride set time=#{time},passenger_id=#{passenger_id},driver_id=#{driver_id},MQTT_chanel=#{MQTT_chanel},ride_type=#{ride_type},
+                                  start_coordinate=#{start_coordinate},start_address=#{start_address},end_coordinate=#{end_coordinate},end_address=#{end_address},
+                                  ride_status=#{ride_status},ride_accept_time=#{ride_accept_time},pick_up_time=#{pick_up_time},arrive_time=#{arrive_time},
+                                  ride_cancel_time=#{ride_cancel_time},ride_distance=#{ride_distance},ride_order_id=#{ride_order_id},ride_alarm_status=#{ride_alarm_status},
+                                  warranty_status=#{warranty_status},ride_stars=#{ride_stars},ride_comment=#{ride_comment},formed_order_id=#{formed_order_id},
+                                  total_price=#{total_price},start_price=#{start_price},ride_gas_price=#{ride_gas_price},time_price=#{time_price},
+                                  special_location_price=#{special_location_price},dynamic_price=#{dynamic_price},order_status=#{order_status},payment_platform=#{payment_platform},
+                                  payment_id=#{payment_id},payment_result=#{payment_result},ride_trace_id=#{ride_trace_id},time_form=#{time_form},GPS_trace=#{GPS_trace},
+                                  speed_trace=#{speed_trace},altitude_trace=#{altitude_trace}
+                              where rid = #{rid}
+    </update>
+
+    <!-- 删除用户-->
+    <delete id="deleteRide" parameterType="int">
+        delete
+        from mybatis.t_ride
+        where rid = #{rid};
+    </delete>
+</mapper>

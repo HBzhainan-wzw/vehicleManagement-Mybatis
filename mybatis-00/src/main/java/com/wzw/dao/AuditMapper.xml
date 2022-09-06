@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--定位package-->
+<mapper namespace="com.wzw.dao.AuditDao">
+    <!-- 获取所有用户 -->
+    <select id="getAuditList" resultType="com.wzw.pojo.Audit">
+        select * from mybatis.t_audit
+    </select>
+
+    <!-- 根据id查询用户 -->
+    <select id="getAuditByID" parameterType="int" resultType="com.wzw.pojo.Audit">
+        select * from mybatis.t_audit where aid = #{aid}
+    </select>
+
+    <!-- 注册用户 -->
+    <insert id="addAudit" parameterType="com.wzw.pojo.Audit">
+        insert into mybatis.t_audit (aid,driver_id,settlement_date,basic_salary,travel_salary,complaint_penalty,other_penalty,insurance_payment,tax_payment,
+                                     summary,settlement_status)
+        values (#{aid},#{driver_id},#{settlement_date},#{basic_salary},#{travel_salary},#{complaint_penalty},#{other_penalty},#{insurance_payment},#{tax_payment}
+               ,#{summary},#{settlement_status})
+    </insert>
+
+    <!-- 更改用户信息 -->
+    <update id="updateAudit" parameterType="com.wzw.pojo.Audit">
+        update mybatis.t_audit set driver_id=#{driver_id},settlement_date=#{settlement_date},basic_salary=#{basic_salary},travel_salary=#{travel_salary},complaint_penalty=#{complaint_penalty},
+                                   other_penalty=#{other_penalty},insurance_payment=#{insurance_payment},tax_payment=#{tax_payment},summary=#{summary},settlement_status=#{settlement_status}
+        where aid = #{aid}
+    </update>
+
+    <!-- 删除用户-->
+    <delete id="deleteAudit" parameterType="int">
+        delete
+        from mybatis.t_audit
+        where aid = #{aid};
+    </delete>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--定位package-->
+<mapper namespace="com.wzw.dao.VehicleDao">
+    <!-- 获取所有用户 -->
+    <select id="getVehicleList" resultType="com.wzw.pojo.Vehicle">
+        select * from mybatis.t_vehicle
+    </select>
+
+    <!-- 根据id查询用户 -->
+    <select id="getVehicleByID" parameterType="int" resultType="com.wzw.pojo.Vehicle">
+        select * from mybatis.t_vehicle where vid = #{vid}
+    </select>
+
+    <!-- 注册用户 -->
+    <insert id="addVehicle" parameterType="com.wzw.pojo.Vehicle">
+        insert into mybatis.t_vehicle (`vid`,`plate`,`VIN`,`brand`,`make`,`color`,`serve_type`,`seat_number`,`condition`,`year`,`is_binded`)
+        values (#{vid},#{plate},#{VIN},#{brand},#{make},#{color},#{serve_type},#{seat_number},#{condition},#{year},#{is_binded})
+    </insert>
+
+    <!-- 更改用户信息 -->
+    <update id="updateVehicle" parameterType="com.wzw.pojo.Vehicle">
+        update mybatis.t_vehicle set `plate`=#{plate},`VIN`=#{VIN},`brand`=#{brand},`make`=#{make},`color`=#{color},`serve_type`=#{serve_type},
+                                     `seat_number`=#{seat_number},`condition`=#{condition},`year`=#{year},`is_binded`=#{is_binded}
+        where vid = #{vid}
+    </update>
+
+    <!-- 删除用户-->
+    <delete id="deleteVehicle" parameterType="int">
+        delete
+        from mybatis.t_vehicle
+        where vid = #{vid};
+    </delete>
+</mapper>
